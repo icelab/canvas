@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Canvas LMS REST API Documentation</title>
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  </head>
+  <body>
+    <div id="header">
+      <h1>
+  <a href="index.html">Canvas LMS - REST API Documentation</a>
+</h1>
+
+    </div>
+
+    <div id="sidebar">
+      <nav>
+  <h2 class='first'>Basics</h2>
+  <a href="basics.html" class="">API Basics</a>
+  <h2>Resources</h2>
+  
+    
+    <a class="" href="assignment_groups.html">Assignment Groups</a>
+  
+    
+    <a class="current" href="assignments.html">Assignments</a>
+  
+    
+    <a class="" href="courses.html">Courses</a>
+  
+    
+    <a class="" href="submissions.html">Submissions</a>
+  
+</nav>
+
+    </div>
+
+    <div id="content"><div class="service">
+  <h1>Assignments API</h1>
+  <p>
+API for accessing assignment information.
+</p>
+<div id="Services" class="method_details_list">
+<h2>Actions</h2>
+
+  <div class="method_details first">
+  <h3>
+  GET /api/v1/courses/:course_id/assignments.json
+  <span class='defined-in'><a href="https://github.com/instructure/canvas-lms/blob/master/app/controllers/assignments_api_controller.rb">AssignmentsApiController#index</a></span>
+</h3>
+<p>
+Returns the list of assignments for the current context.
+</p>
+
+
+
+  <div class="examples">
+    <h4>Example Response:</h4>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code">
+[
+  {
+    &quot;id&quot;: 4,
+    &quot;name&quot;: &quot;some assignment&quot;,
+    &quot;points_possible&quot;: 12,
+    &quot;grading_type&quot;: &quot;points&quot;,
+    &quot;submission_types&quot; : [
+      &quot;online_upload&quot;,
+      &quot;online_text_entry&quot;,
+      &quot;online_url&quot;,
+      &quot;media_recording&quot;
+     ]
+    &quot;use_rubric_for_grading&quot;: true,
+    &quot;rubric&quot;: [
+      {
+        &quot;ratings&quot;: [
+          {
+            &quot;points&quot;: 10,
+            &quot;id&quot;: &quot;rat1&quot;,
+            &quot;description&quot;: &quot;A&quot;
+          },
+          {
+            &quot;points&quot;: 7,
+            &quot;id&quot;: &quot;rat2&quot;,
+            &quot;description&quot;: &quot;B&quot;
+          },
+          {
+            &quot;points&quot;: 0,
+            &quot;id&quot;: &quot;rat3&quot;,
+            &quot;description&quot;: &quot;F&quot;
+          }
+        ],
+        &quot;points&quot;: 10,
+        &quot;id&quot;: &quot;crit1&quot;,
+        &quot;description&quot;: &quot;Crit1&quot;
+      },
+      {
+        &quot;ratings&quot;: [
+          {
+            &quot;points&quot;: 2,
+            &quot;id&quot;: &quot;rat1&quot;,
+            &quot;description&quot;: &quot;Pass&quot;
+          },
+          {
+            &quot;points&quot;: 0,
+            &quot;id&quot;: &quot;rat2&quot;,
+            &quot;description&quot;: &quot;Fail&quot;
+          }
+        ],
+        &quot;points&quot;: 2,
+        &quot;id&quot;: &quot;crit2&quot;,
+        &quot;description&quot;: &quot;Crit2&quot;
+      }
+    ]
+  }
+]</pre>
+    
+  </div>
+
+<h4>API response field:</h4>
+<ul class="response_field">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+        <span class='name'>id</span>
+      
+      
+        <div class='inline'><p>
+The unique identifier for the assignment.
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+        <span class='name'>name</span>
+      
+      
+        <div class='inline'><p>
+The name of the assignment.
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+        <span class='name'>position</span>
+      
+      
+        <div class='inline'><dl>
+<dt>Integer</dt><dd>The sorting order of this assignment in
+
+</dd>
+</dl>
+<p>
+the group.
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+        <span class='name'>points_possible</span>
+      
+      
+        <div class='inline'><p>
+The maximum possible points for the assignment.
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+        <span class='name'>grading_type</span>
+      
+      
+        <div class='inline'><p>
+[Optional,
+&quot;pass_fail&quot;|&quot;percent&quot;|&quot;letter_grade&quot;|&quot;points&quot;]
+The type of grade the assignment receives.
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+        <span class='name'>use_rubric_for_grading</span>
+      
+      
+        <div class='inline'><dl>
+<dt>Boolean</dt><dd>If true, the rubric is
+
+</dd>
+</dl>
+<p>
+directly tied to grading the assignment. Otherwise, it is only advisory.
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+        <span class='name'>rubric</span>
+      
+      
+        <div class='inline'><p>
+[Rubric] A list of rows and ratings for each row. TODO: need more
+discussion of the rubric data format and usage for grading.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+
+  <div class="method_details ">
+  <h3>
+  POST /api/v1/courses/:course_id/assignments.json
+  <span class='defined-in'><a href="https://github.com/instructure/canvas-lms/blob/master/app/controllers/assignments_api_controller.rb">AssignmentsApiController#create</a></span>
+</h3>
+<p>
+Create a new assignment for this course. The assignment is created in the
+active state.
+</p>
+
+<h4>API method argument:</h4>
+<ul class="argument">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+        <span class='name'>assignment[name]</span>
+      
+      
+        <div class='inline'><p>
+The assignment name.
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+        <span class='name'>assignment[position]</span>
+      
+      
+        <div class='inline'><dl>
+<dt>Integer</dt><dd>The position of this assignment in the
+
+</dd>
+</dl>
+<p>
+group when displaying assignment lists.
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+        <span class='name'>assignment[points_possible]</span>
+      
+      
+        <div class='inline'><dl>
+<dt>Float</dt><dd>The maximum points possible on
+
+</dd>
+</dl>
+<p>
+the assignment.
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+        <span class='name'>assignment[grading_type]</span>
+      
+      
+        <div class='inline'><dl>
+<dt>Optional, &quot;pass_fail&quot;|&quot;percent&quot;|&quot;letter_grade&quot;|&quot;points&quot;</dt><dd>The strategy used for grading the assignment. The assignment is ungraded if
+this field is omitted.
+
+</dd>
+</dl>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+</div>
+
+  <div class="method_details ">
+  <h3>
+  PUT /api/v1/courses/:course_id/assignments/:id.json
+  <span class='defined-in'><a href="https://github.com/instructure/canvas-lms/blob/master/app/controllers/assignments_api_controller.rb">AssignmentsApiController#update</a></span>
+</h3>
+<p>
+Modify an existing assignment. See the documentation for assignment
+creation.
+</p>
+
+
+
+
+</div>
+
+</div>
+</div>
+</div>
+
+    <div id="footer">
+  &copy; Instructure, Inc. Generated on Thu Mar 10 09:33:55 2011<br>
+  This documentation is generated directly from the Canvas LMS source code, available <a href="https://github.com/instructure/canvas-lms">on Github</a>.
+</div>
+
+  </body>
+</html>

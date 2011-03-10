@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Canvas LMS REST API Documentation</title>
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  </head>
+  <body>
+    <div id="header">
+      <h1>
+  <a href="index.html">Canvas LMS - REST API Documentation</a>
+</h1>
+
+    </div>
+
+    <div id="sidebar">
+      <nav>
+  <h2 class='first'>Basics</h2>
+  <a href="basics.html" class="">API Basics</a>
+  <h2>Resources</h2>
+  
+    
+    <a class="current" href="assignment_groups.html">Assignment Groups</a>
+  
+    
+    <a class="" href="assignments.html">Assignments</a>
+  
+    
+    <a class="" href="courses.html">Courses</a>
+  
+    
+    <a class="" href="submissions.html">Submissions</a>
+  
+</nav>
+
+    </div>
+
+    <div id="content"><div class="service">
+  <h1>Assignment Groups API</h1>
+  <p>
+API for accessing Assignment Group and Assignment information.
+</p>
+<div id="Services" class="method_details_list">
+<h2>Actions</h2>
+
+  <div class="method_details first">
+  <h3>
+  GET /api/v1/courses/:course_id/assignment_groups.json
+  <span class='defined-in'><a href="https://github.com/instructure/canvas-lms/blob/master/app/controllers/assignment_groups_controller.rb">AssignmentGroupsController#index</a></span>
+</h3>
+<p>
+Returns the list of assignment groups for the current context. The returned
+groups are sorted by their position field.
+</p>
+
+<h4>API method argument:</h4>
+<ul class="argument">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+        <span class='name'>include[]</span>
+      
+      
+        <div class='inline'><dl>
+<dt>&quot;assignments&quot;</dt><dd>Associations to include with the group.
+
+</dd>
+</dl>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+  <div class="examples">
+    <h4>Example Response:</h4>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code">
+?include[]=assignments
+
+[
+  {
+    &quot;position&quot;: 7,
+    &quot;name&quot;: &quot;group2&quot;,
+    &quot;id&quot;: 1,
+    &quot;assignments&quot;: [...]
+  },
+  {
+    &quot;position&quot;: 10,
+    &quot;name&quot;: &quot;group1&quot;,
+    &quot;id&quot;: 2,
+    &quot;assignments&quot;: [...]
+  },
+  {
+    &quot;position&quot;: 12,
+    &quot;name&quot;: &quot;group3&quot;,
+    &quot;id&quot;: 3,
+    &quot;assignments&quot;: [...]
+  }
+]</pre>
+    
+  </div>
+
+<h4>API response field:</h4>
+<ul class="response_field">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+        <span class='name'>id</span>
+      
+      
+        <div class='inline'><p>
+The unique identifier for the assignment group.
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+        <span class='name'>name</span>
+      
+      
+        <div class='inline'><p>
+The name of the assignment group.
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+        <span class='name'>position</span>
+      
+      
+        <div class='inline'><dl>
+<dt>Integer</dt><dd>The sorting order of this group in the
+
+</dd>
+</dl>
+<p>
+groups for this context.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+
+</div>
+</div>
+</div>
+
+    <div id="footer">
+  &copy; Instructure, Inc. Generated on Thu Mar 10 09:33:55 2011<br>
+  This documentation is generated directly from the Canvas LMS source code, available <a href="https://github.com/instructure/canvas-lms">on Github</a>.
+</div>
+
+  </body>
+</html>

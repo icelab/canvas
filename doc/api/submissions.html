@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Canvas LMS REST API Documentation</title>
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  </head>
+  <body>
+    <div id="header">
+      <h1>
+  <a href="index.html">Canvas LMS - REST API Documentation</a>
+</h1>
+
+    </div>
+
+    <div id="sidebar">
+      <nav>
+  <h2 class='first'>Basics</h2>
+  <a href="basics.html" class="">API Basics</a>
+  <h2>Resources</h2>
+  
+    
+    <a class="" href="assignment_groups.html">Assignment Groups</a>
+  
+    
+    <a class="" href="assignments.html">Assignments</a>
+  
+    
+    <a class="" href="courses.html">Courses</a>
+  
+    
+    <a class="current" href="submissions.html">Submissions</a>
+  
+</nav>
+
+    </div>
+
+    <div id="content"><div class="service">
+  <h1>Submissions API</h1>
+  <p>
+API for accessing and updating submissions for an assignment. The
+submission id in these URLs is the id of the student in the course, there
+is no separate submission id exposed in these APIs.
+</p>
+<div id="Services" class="method_details_list">
+<h2>Actions</h2>
+
+  <div class="method_details first">
+  <h3>
+  GET /api/v1/courses/:course_id/assignments/:assignment_id/submissions.json
+  <span class='defined-in'><a href="https://github.com/instructure/canvas-lms/blob/master/app/controllers/submissions_api_controller.rb">SubmissionsApiController#index</a></span>
+</h3>
+<p>
+Get all existing submissions for an assignment.
+</p>
+
+<h4>API method argument:</h4>
+<ul class="argument">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+        <span class='name'>include[]</span>
+      
+      
+        <div class='inline'><dl>
+<dt>&quot;submission_history&quot;|&quot;submission_comments&quot;|&quot;rubric_assessment&quot;</dt><dd>Associations to include with the group.
+
+</dd>
+</dl>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+</div>
+
+  <div class="method_details ">
+  <h3>
+  GET /api/v1/courses/:course_id/assignments/:assignment_id/submissions/:id.json
+  <span class='defined-in'><a href="https://github.com/instructure/canvas-lms/blob/master/app/controllers/submissions_api_controller.rb">SubmissionsApiController#show</a></span>
+</h3>
+<p>
+Get a single submission, based on user id.
+</p>
+
+<h4>API method argument:</h4>
+<ul class="argument">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+        <span class='name'>include[]</span>
+      
+      
+        <div class='inline'><dl>
+<dt>&quot;submission_history&quot;|&quot;submission_comments&quot;|&quot;rubric_assessment&quot;</dt><dd>Associations to include with the group.
+
+</dd>
+</dl>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+</div>
+
+  <div class="method_details ">
+  <h3>
+  PUT /api/v1/courses/:course_id/assignments/:assignment_id/submissions/:id.json
+  <span class='defined-in'><a href="https://github.com/instructure/canvas-lms/blob/master/app/controllers/submissions_api_controller.rb">SubmissionsApiController#update</a></span>
+</h3>
+<p>
+Update the grading for a student&#8217;s assignment submission.
+</p>
+
+<h4>API method argument:</h4>
+<ul class="argument">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+        <span class='name'>submission[posted_grade]</span>
+      
+      
+        <div class='inline'><p>
+Assign a score to the submission, updating both the &quot;score&quot; and
+&quot;grade&quot; fields on the submission record. This parameter can be
+passed in a few different formats:
+</p>
+<table>
+<tr><td valign="top">points:</td><td>A floating point or integral value, such as &quot;13.5&quot;. The grade
+will be interpreted directly as the score of the assignment. Values above
+assignment.points_possible are allowed, for awarding extra credit.
+
+</td></tr>
+<tr><td valign="top">percentage:</td><td>A floating point value appended with a percent sign, such as
+&quot;40%&quot;. The grade will be interpreted as a percentage score on the
+assignment, where 100% == assignment.points_possible. Values above 100% are
+allowed, for awarding extra credit.
+
+</td></tr>
+<tr><td valign="top">letter grade:</td><td>A letter grade, following the assignment&#8217;s defined letter grading
+scheme. For example, &quot;A-&quot;. The resulting score will be the high
+end of the defined range for the letter grade. For instance, if
+&quot;B&quot; is defined as 86% to 84%, a letter grade of &quot;B&quot;
+will be worth 86%. The letter grade will be rejected if the assignment does
+not have a defined letter grading scheme. For more fine-grained control of
+scores, pass in points or percentage rather than the letter grade.
+
+</td></tr>
+<tr><td valign="top">&quot;pass/complete/fail/incomplete&quot;:</td><td>A string value of &quot;pass&quot; or &quot;complete&quot; will give a
+score of 100%. &quot;fail&quot; or &quot;incomplete&quot; will give a score
+of 0.
+
+</td></tr>
+</table>
+<p>
+Note that assignments with grading_type of &quot;pass_fail&quot; can only
+be assigned a score of 0 or assignment.points_possible, nothing inbetween.
+If a posted_grade in the &quot;points&quot; or &quot;percentage&quot;
+format is sent, the grade will only be accepted if the grade equals one of
+those two values.
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+        <span class='name'>rubric_assessment</span>
+      
+      
+        <div class='inline'><p>
+Assign a rubric assessment to this assignment submission. The
+sub-parameters here depend on the rubric for the assignment. The general
+format is, for each row in the rubric:
+</p>
+<table>
+<tr><td valign="top">rubric_assessment[criterion_id][points]:</td><td>The points awarded for this row.
+
+</td></tr>
+<tr><td valign="top">rubric_assessment[criterion_id][comments]:</td><td>Comments to add for this row.
+
+</td></tr>
+</table>
+<p>
+For example, if the assignment rubric is (in JSON format):
+</p>
+<pre class="code">
+  <span class='lbrack token'>[</span>
+    <span class='lbrace token'>{</span>
+      <span class='string val'>'id'</span><span class='colon op'>:</span> <span class='string val'>'crit1'</span><span class='comma token'>,</span>
+      <span class='string val'>'points'</span><span class='colon op'>:</span> <span class='integer val'>10</span><span class='comma token'>,</span>
+      <span class='string val'>'description'</span><span class='colon op'>:</span> <span class='string val'>'Criterion 1'</span><span class='comma token'>,</span>
+      <span class='string val'>'ratings'</span><span class='colon op'>:</span>
+      <span class='lbrack token'>[</span>
+        <span class='lbrace token'>{</span> <span class='string val'>'description'</span><span class='colon op'>:</span> <span class='string val'>'Good'</span><span class='comma token'>,</span> <span class='string val'>'points'</span><span class='colon op'>:</span> <span class='integer val'>10</span> <span class='rbrace token'>}</span><span class='comma token'>,</span>
+        <span class='lbrace token'>{</span> <span class='string val'>'description'</span><span class='colon op'>:</span> <span class='string val'>'Poor'</span><span class='comma token'>,</span> <span class='string val'>'points'</span><span class='colon op'>:</span> <span class='integer val'>3</span> <span class='rbrace token'>}</span>
+      <span class='rbrack token'>]</span>
+    <span class='rbrace token'>}</span><span class='comma token'>,</span>
+    <span class='lbrace token'>{</span>
+      <span class='string val'>'id'</span><span class='colon op'>:</span> <span class='string val'>'crit2'</span><span class='comma token'>,</span>
+      <span class='string val'>'points'</span><span class='colon op'>:</span> <span class='integer val'>5</span><span class='comma token'>,</span>
+      <span class='string val'>'description'</span><span class='colon op'>:</span> <span class='string val'>'Criterion 2'</span><span class='comma token'>,</span>
+      <span class='string val'>'ratings'</span><span class='colon op'>:</span>
+      <span class='lbrack token'>[</span>
+        <span class='lbrace token'>{</span> <span class='string val'>'description'</span><span class='colon op'>:</span> <span class='string val'>'Complete'</span><span class='comma token'>,</span> <span class='string val'>'points'</span><span class='colon op'>:</span> <span class='integer val'>5</span> <span class='rbrace token'>}</span><span class='comma token'>,</span>
+        <span class='lbrace token'>{</span> <span class='string val'>'description'</span><span class='colon op'>:</span> <span class='string val'>'Incomplete'</span><span class='comma token'>,</span> <span class='string val'>'points'</span><span class='colon op'>:</span> <span class='integer val'>0</span> <span class='rbrace token'>}</span>
+      <span class='rbrack token'>]</span>
+    <span class='rbrace token'>}</span>
+  <span class='rbrack token'>]</span>
+</pre>
+<p>
+Then a possible set of values for rubric_assessment would be:
+</p>
+<p>
+rubric_assessment[crit1][points]=3&amp;rubric_assessment[crit2][points]=5&amp;rubric_assessment[crit2][comments]=Well%20Done.
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+        <span class='name'>comment[text_comment]</span>
+      
+      
+        <div class='inline'><p>
+Add a textual comment to the submission.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+</div>
+
+</div>
+</div>
+</div>
+
+    <div id="footer">
+  &copy; Instructure, Inc. Generated on Thu Mar 10 09:33:55 2011<br>
+  This documentation is generated directly from the Canvas LMS source code, available <a href="https://github.com/instructure/canvas-lms">on Github</a>.
+</div>
+
+  </body>
+</html>
