@@ -31,6 +31,9 @@
     <a class="" href="courses.html">Courses</a>
   
     
+    <a class="" href="sis_imports.html">SIS Imports</a>
+  
+    
     <a class="current" href="submissions.html">Submissions</a>
   
 </nav>
@@ -58,6 +61,75 @@ Get all existing submissions for an assignment.
 
 <h4>API method argument:</h4>
 <ul class="argument">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+        <span class='name'>include[]</span>
+      
+      
+        <div class='inline'><dl>
+<dt>&quot;submission_history&quot;|&quot;submission_comments&quot;|&quot;rubric_assessment&quot;</dt><dd>Associations to include with the group.
+
+</dd>
+</dl>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+</div>
+
+  <div class="method_details ">
+  <h3>
+  GET /api/v1/courses/:course_id/students/submissions.json
+  <span class='defined-in'><a href="https://github.com/instructure/canvas-lms/blob/master/app/controllers/submissions_api_controller.rb">SubmissionsApiController#for_students</a></span>
+</h3>
+<p>
+Get all existing submissions for a given set of students and assignments.
+</p>
+
+<h4>API method argument:</h4>
+<ul class="argument">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+        <span class='name'>student_ids[]</span>
+      
+      
+        <div class='inline'><p>
+List of student ids to return submissions for. At least one is required.
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+        <span class='name'>assignment_ids[]</span>
+      
+      
+        <div class='inline'><p>
+List of assignments to return submissions for. If none are given,
+submissions for all assignments are returned.
+</p>
+</div>
+      
+    </li>
   
     <li>
       
@@ -269,7 +341,7 @@ Add a textual comment to the submission.
 </div>
 
     <div id="footer">
-  &copy; Instructure, Inc. Generated on Wed Mar 30 14:57:42 2011<br>
+  &copy; Instructure, Inc. Generated on Thu Apr 21 16:35:00 2011<br>
   This documentation is generated directly from the Canvas LMS source code, available <a href="https://github.com/instructure/canvas-lms">on Github</a>.
 </div>
 

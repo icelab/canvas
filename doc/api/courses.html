@@ -31,6 +31,9 @@
     <a class="current" href="courses.html">Courses</a>
   
     
+    <a class="" href="sis_imports.html">SIS Imports</a>
+  
+    
     <a class="" href="submissions.html">Submissions</a>
   
 </nav>
@@ -203,6 +206,105 @@ returned if include[]=needs_grading_count
 
   <div class="method_details ">
   <h3>
+  GET /api/v1/courses/:course_id/sections.json
+  <span class='defined-in'><a href="https://github.com/instructure/canvas-lms/blob/master/app/controllers/courses_controller.rb">CoursesController#sections</a></span>
+</h3>
+<p>
+Returns the list of sections for this course.
+</p>
+<p>
+[
+</p>
+<pre class="code">
+  <span class='lbrace token'>{</span>
+    <span class='string val'>&quot;id&quot;</span><span class='colon op'>:</span> <span class='integer val'>1</span><span class='comma token'>,</span>
+    <span class='string val'>&quot;name&quot;</span><span class='colon op'>:</span> <span class='string val'>&quot;Section A&quot;</span><span class='comma token'>,</span>
+    <span class='string val'>&quot;students&quot;</span><span class='colon op'>:</span> <span class='lbrack token'>[</span><span class='dot3 op'>...</span><span class='rbrack token'>]</span>
+  <span class='rbrace token'>}</span><span class='comma token'>,</span>
+  <span class='lbrace token'>{</span>
+    <span class='string val'>&quot;id&quot;</span><span class='colon op'>:</span> <span class='integer val'>2</span><span class='comma token'>,</span>
+    <span class='string val'>&quot;name&quot;</span><span class='colon op'>:</span> <span class='string val'>&quot;Section B&quot;</span><span class='comma token'>,</span>
+    <span class='string val'>&quot;students&quot;</span><span class='colon op'>:</span> <span class='lbrack token'>[</span><span class='dot3 op'>...</span><span class='rbrack token'>]</span>
+  <span class='rbrace token'>}</span>
+</pre>
+<p>
+]
+</p>
+
+<h4>API method argument:</h4>
+<ul class="argument">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+        <span class='name'>include[]</span>
+      
+      
+        <div class='inline'><dl>
+<dt>&quot;students&quot;</dt><dd>Associations to include with the group.
+
+</dd>
+</dl>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+  <div class="examples">
+    <h4>Example Response:</h4>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code">
+?include[]=students</pre>
+    
+  </div>
+
+<h4>API response field:</h4>
+<ul class="response_field">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+        <span class='name'>id</span>
+      
+      
+        <div class='inline'><p>
+The unique identifier for the course section.
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+        <span class='name'>name</span>
+      
+      
+        <div class='inline'><p>
+The name of the section.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+
+  <div class="method_details ">
+  <h3>
   GET /api/v1/courses/:course_id/students.json
   <span class='defined-in'><a href="https://github.com/instructure/canvas-lms/blob/master/app/controllers/courses_controller.rb">CoursesController#students</a></span>
 </h3>
@@ -266,7 +368,7 @@ The full student name.
 </div>
 
     <div id="footer">
-  &copy; Instructure, Inc. Generated on Wed Mar 30 14:57:42 2011<br>
+  &copy; Instructure, Inc. Generated on Thu Apr 21 16:35:00 2011<br>
   This documentation is generated directly from the Canvas LMS source code, available <a href="https://github.com/instructure/canvas-lms">on Github</a>.
 </div>
 
