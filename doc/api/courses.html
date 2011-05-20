@@ -319,8 +319,8 @@ Returns the list of students enrolled in this course.
     
       <h4><div class='inline'></div></h4>
       <pre class="example code">
-[ { 'id': 1, 'name': 'first student' },
-  { 'id': 2, 'name': 'second student' } ]</pre>
+[ { 'id': 1, 'name': 'first student', 'sis_user_id': null },
+  { 'id': 2, 'name': 'second student', 'sis_user_id': 'from-sis' } ]</pre>
     
   </div>
 
@@ -359,6 +359,22 @@ The full student name.
       
     </li>
   
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+        <span class='name'>sis_user_id</span>
+      
+      
+        <div class='inline'><p>
+The SIS id for the user&#8217;s primary pseudonym.
+</p>
+</div>
+      
+    </li>
+  
 </ul>
 
 </div>
@@ -368,7 +384,7 @@ The full student name.
 </div>
 
     <div id="footer">
-  &copy; Instructure, Inc. Generated on Thu Apr 21 16:35:00 2011<br>
+  &copy; Instructure, Inc. Generated on Fri May 20 09:58:28 2011<br>
   This documentation is generated directly from the Canvas LMS source code, available <a href="https://github.com/instructure/canvas-lms">on Github</a>.
 </div>
 
