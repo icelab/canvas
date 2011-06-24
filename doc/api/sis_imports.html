@@ -130,6 +130,42 @@ would usually be provided with the filename in the multipart post request
 scenario. If not provided, this value will be inferred from the
 Content-Type, falling back to zip-file format if all else fails.
 </p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+        <span class='name'>batch_mode</span>
+      
+      
+        <div class='inline'><dl>
+<dt>&quot;1&quot;</dt><dd>If set, this SIS import will be run in batch mode, deleting any data
+previously imported via SIS that is not present in this latest import. See
+the PDF document for details.
+
+</dd>
+</dl>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+        <span class='name'>batch_mode_term_id</span>
+      
+      
+        <div class='inline'><p>
+Limit deletions to only this term, if batch mode is enabled.
+</p>
 <p>
 Examples:
 </p>
@@ -140,6 +176,8 @@ Examples:
       <span class='string val'>'http://&lt;canvas&gt;/api/v1/accounts/&lt;account_id&gt;/sis_imports.json?api_key=&lt;key&gt;&amp;import_type=instructure_csv'</span>
   <span class='curl identifier id'>curl</span> <span class='minus op'>-</span><span class='H constant id'>H</span> <span class='string val'>'Content-Type: text/csv'</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='data identifier id'>data</span><span class='minus op'>-</span><span class='binary identifier id'>binary</span> @<span class='lt op'>&lt;</span><span class='filename identifier id'>filename</span><span class='gt op'>&gt;</span><span class='dot token'>.</span><span class='csv identifier id'>csv</span> <span class='minus op'>-</span><span class='u identifier id'>u</span> <span class='string val'>'&lt;username&gt;:&lt;password&gt;'</span> \
       <span class='string val'>'http://&lt;canvas&gt;/api/v1/accounts/&lt;account_id&gt;/sis_imports.json?api_key=&lt;key&gt;&amp;import_type=instructure_csv'</span>
+  <span class='curl identifier id'>curl</span> <span class='minus op'>-</span><span class='H constant id'>H</span> <span class='string val'>'Content-Type: text/csv'</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='data identifier id'>data</span><span class='minus op'>-</span><span class='binary identifier id'>binary</span> @<span class='lt op'>&lt;</span><span class='filename identifier id'>filename</span><span class='gt op'>&gt;</span><span class='dot token'>.</span><span class='csv identifier id'>csv</span> <span class='minus op'>-</span><span class='u identifier id'>u</span> <span class='string val'>'&lt;username&gt;:&lt;password&gt;'</span> \
+      <span class='string val'>'http://&lt;canvas&gt;/api/v1/accounts/&lt;account_id&gt;/sis_imports.json?api_key=&lt;key&gt;&amp;import_type=instructure_csv&amp;batch_mode=1&amp;batch_mode_term_id=15'</span>
 </pre>
 </div>
       
@@ -170,7 +208,7 @@ Get the status of an already created SIS import.
 </div>
 
     <div id="footer">
-  &copy; Instructure, Inc. Generated on Fri May 20 09:58:29 2011<br>
+  &copy; Instructure, Inc. Generated on Fri Jun 24 10:24:03 2011<br>
   This documentation is generated directly from the Canvas LMS source code, available <a href="https://github.com/instructure/canvas-lms">on Github</a>.
 </div>
 

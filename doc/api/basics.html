@@ -54,6 +54,51 @@ Additional response formats may be added in the future.</p>
 
 <h2>Authentication</h2>
 
+<h3>Access Tokens</h3>
+
+<p>You can use access tokens to authenticate as any user in the system.
+Currently access tokens must be created by the user and then given to
+the third party for use.  Access tokens can be generated from the user's
+profile page.</p>
+
+<p>Note that all requests will need the
+"access_token" query parameter set, not just the first request.
+Most API calls will only return data that is visible to the
+authenticated user.  For example, to list the courses that
+your user is enrolled in as a teacher:</p>
+
+<pre class="code">$ curl https://canvas.instructure.com/api/v1/courses.json?access_token=USER_PROVIDED_ACCESS_TOKEN | jsonpretty
+[
+  {
+    "name": "First Course",
+    "id": 123456,
+    "course_code": "Course-1",
+    "enrollments": [
+      {
+        "type": "teacher"
+      },
+      {
+        "type": "ta"
+      }
+    ]
+  },
+  {
+    "name": "Second Course",
+    "id": 54321,
+    "course_code": "Course-2",
+    "enrollments": [
+      {
+        "type": "teacher"
+      }
+    ]
+  }
+]
+</pre>
+
+<h3>HTTP Basic Auth</h3>
+
+<p><em>This authentication approach is deprecated</em></p>
+
 <p>You can use HTTP Basic Auth to authenticate with any username/password
 combination. Note that all requests will need the Authentication header,
 not just the first request. Most API calls will only return data that is
@@ -138,10 +183,13 @@ prepending the sis id with "sis:". For instance, to retrieve the list of
 assignments for a course with sis_source_id of 'A1234':</p>
 
 <pre class="code">/api/v1/courses/sis:A1234/assignments.json
-</pre></div></div>
+</pre>                                                                                   #
+              end                                                                           # end
+              #Add an alias to support the now deprecated formatted_* URL.                  # #Add an alias to support the now deprecated formatted_* URL.
+    </div></div>
 
     <div id="footer">
-  &copy; Instructure, Inc. Generated on Fri May 20 09:58:28 2011<br>
+  &copy; Instructure, Inc. Generated on Fri Jun 24 10:24:02 2011<br>
   This documentation is generated directly from the Canvas LMS source code, available <a href="https://github.com/instructure/canvas-lms">on Github</a>.
 </div>
 
