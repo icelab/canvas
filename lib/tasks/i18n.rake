@@ -1,5 +1,7 @@
 namespace :i18n do
   module HashExtensions
+    require 'ya2yaml'
+    
     def flatten(result={}, prefix='')
       each_pair do |k, v|
         if v.is_a?(Hash)
